@@ -28,14 +28,12 @@ class FilamentExportServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/filament-export'),
         ], 'views');
-    
-        if (class_exists('\Filament\Facades\Filament')) {
-            Filament::serving(static function () {
-                FilamentAsset::register([
-                    Js::make('filament-export-3.0.0', __DIR__.'/../resources/js/filament-export.js'),
-                    Css::make('filament-export-3.0.0', __DIR__.'/../resources/css/filament-export.css'),
-                ]);
-            });
-        }
+        
+        Filament::serving(static function () {
+            FilamentAsset::register([
+                Js::make('filament-export', __DIR__.'/../resources/js/filament-export.js'),
+                Css::make('filament-export', __DIR__.'/../resources/css/filament-export.css'),
+            ]);
+        });
     }
 }
