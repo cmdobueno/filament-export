@@ -1,8 +1,8 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Tests\Database\Factories;
+namespace Cmdobueno\FilamentExport\Tests\Database\Factories;
 
-use AlperenErsoy\FilamentExport\Tests\Models\User;
+use Cmdobueno\FilamentExport\Tests\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

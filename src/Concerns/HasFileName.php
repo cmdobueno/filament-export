@@ -1,6 +1,6 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Concerns;
+namespace Cmdobueno\FilamentExport\Concerns;
 
 trait HasFileName
 {

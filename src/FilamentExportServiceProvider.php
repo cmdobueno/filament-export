@@ -1,7 +1,11 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport;
+namespace Cmdobueno\FilamentExport;
 
+use Filament\Facades\Filament;
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Js;
+use Filament\Support\Facades\FilamentAsset;
 use Illuminate\Support\ServiceProvider;
 
 class FilamentExportServiceProvider extends ServiceProvider
@@ -26,12 +30,10 @@ class FilamentExportServiceProvider extends ServiceProvider
         ], 'views');
     
         if (class_exists('\Filament\Facades\Filament')) {
-            \Filament\Facades\Filament::serving(function () {
-                \Filament\Facades\Filament::registerScripts([
-                    'filament-export-0.3.0' => __DIR__.'/../resources/js/filament-export.js',
-                ]);
-                \Filament\Facades\Filament::registerStyles([
-                    'filament-export-0.3.0' => __DIR__.'/../resources/css/filament-export.css',
+            Filament::serving(static function () {
+                FilamentAsset::register([
+                    Js::make('filament-export-3.0.0', __DIR__.'/../resources/js/filament-export.js'),
+                    Css::make('filament-export-3.0.0', __DIR__.'/../resources/css/filament-export.css'),
                 ]);
             });
         }

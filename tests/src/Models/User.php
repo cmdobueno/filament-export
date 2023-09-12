@@ -1,8 +1,8 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Tests\Models;
+namespace Cmdobueno\FilamentExport\Tests\Models;
 
-use AlperenErsoy\FilamentExport\Tests\Database\Factories\UserFactory;
+use Cmdobueno\FilamentExport\Tests\Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;

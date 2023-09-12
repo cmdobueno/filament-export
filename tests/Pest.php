@@ -11,7 +11,7 @@
 |
 */
 
-use AlperenErsoy\FilamentExport\Tests\TestCase;
+use Cmdobueno\FilamentExport\Tests\TestCase;
 
 uses(TestCase::class)->in('src/');
 

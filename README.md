@@ -150,7 +150,7 @@ You can also use default bulk action and header action functions to customize ac
 Publish configuration
 
 ```bash
-php artisan vendor:publish --provider="AlperenErsoy\FilamentExport\FilamentExportServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Cmdobueno\FilamentExport\FilamentExportServiceProvider" --tag="config"
 ```
 
 You can configure these settings:
@@ -178,7 +178,7 @@ return [
 Publish views
 
 ```bash
-php artisan vendor:publish --provider="AlperenErsoy\FilamentExport\FilamentExportServiceProvider" --tag="views"
+php artisan vendor:publish --provider="Cmdobueno\FilamentExport\FilamentExportServiceProvider" --tag="views"
 ```
 
 This package has two views:

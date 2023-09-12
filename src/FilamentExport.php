@@ -1,25 +1,25 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport;
+namespace Cmdobueno\FilamentExport;
 
-use AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction;
-use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
-use AlperenErsoy\FilamentExport\Components\TableView;
-use AlperenErsoy\FilamentExport\Concerns\CanDisableTableColumns;
-use AlperenErsoy\FilamentExport\Concerns\CanFilterColumns;
-use AlperenErsoy\FilamentExport\Concerns\CanHaveAdditionalColumns;
-use AlperenErsoy\FilamentExport\Concerns\CanHaveExtraColumns;
-use AlperenErsoy\FilamentExport\Concerns\CanHaveExtraViewData;
-use AlperenErsoy\FilamentExport\Concerns\CanModifyWriters;
-use AlperenErsoy\FilamentExport\Concerns\CanShowHiddenColumns;
-use AlperenErsoy\FilamentExport\Concerns\CanUseSnappy;
-use AlperenErsoy\FilamentExport\Concerns\HasCsvDelimiter;
-use AlperenErsoy\FilamentExport\Concerns\HasData;
-use AlperenErsoy\FilamentExport\Concerns\HasFileName;
-use AlperenErsoy\FilamentExport\Concerns\HasFormat;
-use AlperenErsoy\FilamentExport\Concerns\HasPageOrientation;
-use AlperenErsoy\FilamentExport\Concerns\HasPaginator;
-use AlperenErsoy\FilamentExport\Concerns\HasTable;
+use Cmdobueno\FilamentExport\Actions\FilamentExportBulkAction;
+use Cmdobueno\FilamentExport\Actions\FilamentExportHeaderAction;
+use Cmdobueno\FilamentExport\Components\TableView;
+use Cmdobueno\FilamentExport\Concerns\CanDisableTableColumns;
+use Cmdobueno\FilamentExport\Concerns\CanFilterColumns;
+use Cmdobueno\FilamentExport\Concerns\CanHaveAdditionalColumns;
+use Cmdobueno\FilamentExport\Concerns\CanHaveExtraColumns;
+use Cmdobueno\FilamentExport\Concerns\CanHaveExtraViewData;
+use Cmdobueno\FilamentExport\Concerns\CanModifyWriters;
+use Cmdobueno\FilamentExport\Concerns\CanShowHiddenColumns;
+use Cmdobueno\FilamentExport\Concerns\CanUseSnappy;
+use Cmdobueno\FilamentExport\Concerns\HasCsvDelimiter;
+use Cmdobueno\FilamentExport\Concerns\HasData;
+use Cmdobueno\FilamentExport\Concerns\HasFileName;
+use Cmdobueno\FilamentExport\Concerns\HasFormat;
+use Cmdobueno\FilamentExport\Concerns\HasPageOrientation;
+use Cmdobueno\FilamentExport\Concerns\HasPaginator;
+use Cmdobueno\FilamentExport\Concerns\HasTable;
 use Carbon\Carbon;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\ImageColumn;
@@ -352,7 +352,7 @@ class FilamentExport
 
         $column->table($table);
 
-        $state = in_array(\Filament\Tables\Columns\Concerns\CanFormatState::class, class_uses($column)) ? $column->getFormattedState() : $column->getState();
+        $state = $column->getState();
 
         if (is_array($state)) {
             $state = implode(', ', $state);

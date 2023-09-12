@@ -1,9 +1,10 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Components;
+namespace Cmdobueno\FilamentExport\Components;
 
-use AlperenErsoy\FilamentExport\Components\Concerns\HasUniqueActionId;
-use AlperenErsoy\FilamentExport\FilamentExport;
+use Cmdobueno\FilamentExport\Components\Concerns\HasUniqueActionId;
+use Cmdobueno\FilamentExport\FilamentExport;
+use Filament\Actions\StaticAction;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\Concerns\HasName;
 use Filament\Tables\Actions\Modal\Actions\Action;
@@ -156,12 +157,11 @@ class TableView extends Component
             ->icon(config('filament-export.print_icon'));
     }
 
-    public function getCancelAction(): Action
+    public function getCancelAction(): StaticAction
     {
-        return Action::make('cancel')
+        return StaticAction::make('cancel')
             ->button()
             ->label(__('filament-export::export_action.cancel_action_label'))
-            ->cancel()
             ->color('secondary')
             ->icon(config('filament-export.cancel_icon'));
     }

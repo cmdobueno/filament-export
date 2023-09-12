@@ -1,8 +1,8 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Tests\Filament\Resources\UserResource\Pages;
+namespace Cmdobueno\FilamentExport\Tests\Filament\Resources\UserResource\Pages;
 
-use AlperenErsoy\FilamentExport\Tests\Filament\Resources\UserResource;
+use Cmdobueno\FilamentExport\Tests\Filament\Resources\UserResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 

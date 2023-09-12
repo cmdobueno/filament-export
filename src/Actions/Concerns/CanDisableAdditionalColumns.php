@@ -1,6 +1,6 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Actions\Concerns;
+namespace Cmdobueno\FilamentExport\Actions\Concerns;
 
 trait CanDisableAdditionalColumns
 {

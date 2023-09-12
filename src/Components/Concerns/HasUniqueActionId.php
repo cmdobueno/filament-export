@@ -1,6 +1,6 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Components\Concerns;
+namespace Cmdobueno\FilamentExport\Components\Concerns;
 
 trait HasUniqueActionId
 {

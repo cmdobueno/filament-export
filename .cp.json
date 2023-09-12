@@ -26,12 +26,12 @@
         "php": "^8.1",
         "filament/tables": "^3.0",
         "barryvdh/laravel-dompdf": "^2.0",
-        "spatie/simple-excel": "^3.2"
+        "spatie/simple-excel": "^3.2.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^8.10",
-        "pestphp/pest": "^2.18",
-        "pestphp/pest-plugin-livewire": "^2.1",
+        "orchestra/testbench": "^7.6",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-livewire": "^1.0",
         "filament/filament": "^3.0"
     },
     "extra": {

@@ -1,6 +1,6 @@
 <input id="{{ $getStatePath() }}" type="hidden" {{ $applyStateBindingModifiers('wire:model') }}="{{ $getStatePath() }}">
 
-<x-filament-support::modal id="preview-modal" width="7xl" display-classes="block" :dark-mode="config('filament.dark_mode')" x-init="$wire.on('open-preview-modal-{{ $getUniqueActionId() }}', function() {
+<x-filament::modal id="preview-modal" width="7xl" display-classes="block" :dark-mode="config('filament.dark_mode')" x-init="$wire.on('open-preview-modal-{{ $getUniqueActionId() }}', function() {
     triggerInputEvent('{{ $getStatePath() }}', '{{ $shouldRefresh() ? 'refresh' : '' }}');
     isOpen = true;
 });
@@ -27,7 +27,7 @@ $wire.on('close-preview-modal-{{ $getUniqueActionId() }}', () => { isOpen = fals
             @endforeach
         </table>
         <div>
-            <x-tables::pagination :paginator="$getRows()" :records-per-page-select-options="$this->getTable()->getRecordsPerPageSelectOptions()" />
+            <x-filament::pagination :paginator="$getRows()" :records-per-page-select-options="10" />
         </div>
     </div>
     <x-slot name="footer">
@@ -35,9 +35,7 @@ $wire.on('close-preview-modal-{{ $getUniqueActionId() }}', () => { isOpen = fals
             {{ $action }}
         @endforeach
     </x-slot>
-    @php
-        $data = $this->mountedTableBulkAction ? $this->mountedTableBulkActionData : $this->mountedTableActionData;
-    @endphp
+
     @if (is_array($data) &&
         array_key_exists('table_view', $data) &&
         $data['table_view'] == 'print-' . $getUniqueActionId())
@@ -54,4 +52,4 @@ $wire.on('close-preview-modal-{{ $getUniqueActionId() }}', () => { isOpen = fals
             window.Livewire.emit("open-preview-modal-{{ $getUniqueActionId() }}");
         </script>
     @endif
-</x-filament-support::modal>
+</x-filament::modal>

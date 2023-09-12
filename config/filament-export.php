@@ -10,9 +10,9 @@ return [
     'disable_file_name_prefix' => false,
     'disable_preview' => false,
     'use_snappy' => false,
-    'action_icon' => 'heroicon-o-document-download',
+    'action_icon' => 'fas-cloud-download-alt',
     'preview_icon' => 'heroicon-o-eye',
-    'export_icon' => 'heroicon-o-download',
+    'export_icon' => 'fas-cloud-download-alt',
     'print_icon' => 'heroicon-o-printer',
     'cancel_icon' => 'heroicon-o-x-circle',
 ];

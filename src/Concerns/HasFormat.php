@@ -1,8 +1,8 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Concerns;
+namespace Cmdobueno\FilamentExport\Concerns;
 
-use AlperenErsoy\FilamentExport\FilamentExport;
+use Cmdobueno\FilamentExport\FilamentExport;
 
 trait HasFormat
 {

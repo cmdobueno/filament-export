@@ -1,6 +1,6 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Actions\Concerns;
+namespace Cmdobueno\FilamentExport\Actions\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
@@ -11,8 +11,9 @@ trait HasRecords
 
     public function getTableQuery(): Builder
     {
+        
         $livewire = $this->getLivewire();
-
+        return $livewire->getFilteredTableQuery();
         $model = $this->getTable()->getModel();
         $query = $model::query();
 
@@ -32,10 +33,9 @@ trait HasRecords
             $query->whereBelongsTo($livewire->ownerRecord);
         }
 
-        $livewire->cacheTableFilters();
 
         $query->where(function (Builder $query) use ($filterData, $livewire) {
-            foreach ($livewire->getCachedTableFilters() as $filter) {
+            foreach ($livewire->getTableFiltersForm()->getState() as $filter) {
                 $filter->apply(
                     $query,
                     $filterData[$filter->getName()] ?? [],

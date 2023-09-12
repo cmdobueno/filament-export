@@ -1,9 +1,9 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Components\Concerns;
+namespace Cmdobueno\FilamentExport\Components\Concerns;
 
-use AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction;
-use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
+use Cmdobueno\FilamentExport\Actions\FilamentExportBulkAction;
+use Cmdobueno\FilamentExport\Actions\FilamentExportHeaderAction;
 
 trait HasAction
 {

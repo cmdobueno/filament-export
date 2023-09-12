@@ -1,9 +1,9 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Tests\Database\Factories;
+namespace Cmdobueno\FilamentExport\Tests\Database\Factories;
 
-use AlperenErsoy\FilamentExport\Tests\Models\Post;
-use AlperenErsoy\FilamentExport\Tests\Models\User;
+use Cmdobueno\FilamentExport\Tests\Models\Post;
+use Cmdobueno\FilamentExport\Tests\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory

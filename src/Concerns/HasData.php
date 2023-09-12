@@ -1,6 +1,6 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Concerns;
+namespace Cmdobueno\FilamentExport\Concerns;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;

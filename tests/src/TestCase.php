@@ -1,9 +1,9 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Tests;
+namespace Cmdobueno\FilamentExport\Tests;
 
-use AlperenErsoy\FilamentExport\FilamentExportServiceProvider;
-use AlperenErsoy\FilamentExport\Tests\Models\User;
+use Cmdobueno\FilamentExport\FilamentExportServiceProvider;
+use Cmdobueno\FilamentExport\Tests\Models\User;
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Filament\FilamentServiceProvider;

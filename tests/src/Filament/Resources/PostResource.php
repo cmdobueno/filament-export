@@ -1,9 +1,9 @@
 <?php
 
-namespace AlperenErsoy\FilamentExport\Tests\Filament\Resources;
+namespace Cmdobueno\FilamentExport\Tests\Filament\Resources;
 
-use AlperenErsoy\FilamentExport\Tests\Filament\Resources\PostResource\Pages;
-use AlperenErsoy\FilamentExport\Tests\Models\Post;
+use Cmdobueno\FilamentExport\Tests\Filament\Resources\PostResource\Pages;
+use Cmdobueno\FilamentExport\Tests\Models\Post;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -44,10 +44,10 @@ class PostResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->headerActions([
-                \AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction::make('export'),
+                \Cmdobueno\FilamentExport\Actions\FilamentExportHeaderAction::make('export'),
             ])
             ->bulkActions([
-                \AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction::make('export'),
+                \Cmdobueno\FilamentExport\Actions\FilamentExportBulkAction::make('export'),
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
