@@ -36,7 +36,7 @@ trait HasExportModelActions
             $livewireCallActionName = $this->getLivewireCallActionName();
         }
         
-        dd($this);
+        dd($this, $this->getLivewire());
         
         return array_merge(
             $this->getPreviewAction(),
