@@ -9,6 +9,7 @@ trait HasExportModelActions
 {
     public function getPreviewAction(): array
     {
+        return [];
         $uniqueActionId = $this->getUniqueActionId();
 
         return ! $this->isPreviewDisabled() ? [
@@ -42,18 +43,6 @@ trait HasExportModelActions
                     ->submit($livewireCallActionName)
                     ->color($this->getColor() !== 'secondary' ? $this->getColor() : null)
                     ->icon(config('filament-export.export_icon')),
-                StaticAction::make('print')
-                    ->button()
-                    ->label(__('filament-export::export_action.print_action_label'))
-                    ->color('gray')
-                    ->icon(config('filament-export.print_icon'))
-                    ->action("\$dispatch('print-table-{$uniqueActionId}')"),
-                StaticAction::make('cancel')
-                    ->button()
-                    ->label(__('filament-export::export_action.cancel_action_label'))
-                    ->color('secondary')
-                    ->icon(config('filament-export.cancel_icon'))
-                    ->action("\$dispatch('close-preview-modal-{$uniqueActionId}')"),
             ]
         );
     }
