@@ -136,7 +136,7 @@ class TableView extends Component
         return $paginator;
     }
 
-    public function getExportAction(): Action
+    public function getExportAction(): StaticAction
     {
         return StaticAction::make('export')
             ->button()
@@ -144,7 +144,7 @@ class TableView extends Component
             ->icon(config('filament-export.export_icon'));
     }
 
-    public function getPrintAction(): Action
+    public function getPrintAction(): StaticAction
     {
         $uniqueActionId = $this->getUniqueActionId();
 
