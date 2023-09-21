@@ -26,15 +26,14 @@ trait HasExportModelActions
     {
         $uniqueActionId = $this->getUniqueActionId();
 
-        $livewireCallActionName = null;
-
         if (method_exists($this, 'getLivewireSubmitActionName')) {
             $livewireCallActionName = $this->getLivewireSubmitActionName();
         } elseif (method_exists($this, 'getLivewireCallActionName')) {
             $livewireCallActionName = $this->getLivewireCallActionName();
+        }else{
+            $livewireCallActionName =  $this->getLivewireCallMountedActionName();
+            
         }
-        
-        dd($this, $this->getLivewireCallMountedActionName());
         
         return array_merge(
             $this->getPreviewAction(),
