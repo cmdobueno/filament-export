@@ -136,43 +136,20 @@ class TableView extends Component
         return $paginator;
     }
 
-    public function getExportAction(): Action
+    public function getExportAction(): StaticAction
     {
-        return Action::make('export')
+        dd($this);
+        return StaticAction::make('export')
             ->button()
             ->label(__('filament-export::table_view.export_action_label'))
             ->submit('form')
             ->icon(config('filament-export.export_icon'));
     }
-
-    public function getPrintAction(): Action
-    {
-        $uniqueActionId = $this->getUniqueActionId();
-
-        return Action::make('print')
-            ->button()
-            ->label(__('filament-export::table_view.print_action_label'))
-            ->action("\$emit('print-table-$uniqueActionId')")
-            ->color('gray')
-            ->icon(config('filament-export.print_icon'))
-            ->hidden(true);
-    }
-
-    public function getCancelAction(): StaticAction
-    {
-        return StaticAction::make('cancel')
-            ->button()
-            ->label(__('filament-export::export_action.cancel_action_label'))
-            ->color('secondary')
-            ->icon(config('filament-export.cancel_icon'));
-    }
-
+    
     public function getFooterActions(): array
     {
         return [
             $this->getExportAction(),
-            $this->getPrintAction(),
-            $this->getCancelAction(),
         ];
     }
 
