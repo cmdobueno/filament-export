@@ -1,14 +1,27 @@
 <input id="{{ $getStatePath() }}" type="hidden" {{ $applyStateBindingModifiers('wire:model') }}="{{ $getStatePath() }}">
 
-<x-filament::modal id="preview-modal" width="7xl" display-classes="block" :dark-mode="config('filament.dark_mode')" x-init="$wire.on('open-preview-modal-{{ $getUniqueActionId() }}', function() {
-    triggerInputEvent('{{ $getStatePath() }}', '{{ $shouldRefresh() ? 'refresh' : '' }}');
-    isOpen = true;
-});
-$wire.on('close-preview-modal-{{ $getUniqueActionId() }}', () => { isOpen = false; });" :heading="$getPreviewModalHeading()">
+<x-filament::modal
+    id="preview-modal"
+    width="7xl"
+    display-classes="block"
+    :dark-mode="config('filament.dark_mode')"
+    x-init="
+        $wire.on('open-preview-modal-{{ $getUniqueActionId() }}',
+            function() {
+                triggerInputEvent('{{ $getStatePath() }}', '{{ $shouldRefresh() ? 'refresh' : '' }}');
+                isOpen = true;
+            });
+        $wire.on('close-preview-modal-{{ $getUniqueActionId() }}', () => { isOpen = false; });"
+    :heading="$getPreviewModalHeading()"
+>
+    <form name="export-form">
     <div class="preview-table-wrapper space-y-4">
-        <table class="preview-table dark:bg-gray-800 dark:text-white dark:border-gray-700" x-init="$wire.on('print-table-{{ $getUniqueActionId() }}', function() {
-            triggerInputEvent('{{ $getStatePath() }}', 'print-{{ $getUniqueActionId() }}')
-        })">
+        <table
+            class="preview-table dark:bg-gray-800 dark:text-white dark:border-gray-700"
+            x-init="$wire.on('print-table-{{ $getUniqueActionId() }}', function() {
+                triggerInputEvent('{{ $getStatePath() }}', 'print-{{ $getUniqueActionId() }}')
+            })"
+        >
             <tr class="dark:border-gray-700">
                 @foreach ($getAllColumns() as $column)
                     <th class="dark:border-gray-700">
@@ -35,21 +48,5 @@ $wire.on('close-preview-modal-{{ $getUniqueActionId() }}', () => { isOpen = fals
             {{ $action }}
         @endforeach
     </x-slot>
-
-    @if (is_array($data) &&
-        array_key_exists('table_view', $data) &&
-        $data['table_view'] == 'print-' . $getUniqueActionId())
-        <script>
-            printHTML(`{!! $this->printHTML !!}`, '{{ $getStatePath() }}', '{{ $getUniqueActionId() }}');
-        </script>
-    @endif
-    @if ($shouldRefresh())
-        <script>
-            window.Livewire.emit("close-preview-modal-{{ $getUniqueActionId() }}");
-
-            triggerInputEvent('{{ $getStatePath() }}', 'refresh');
-
-            window.Livewire.emit("open-preview-modal-{{ $getUniqueActionId() }}");
-        </script>
-    @endif
+    </form>
 </x-filament::modal>
