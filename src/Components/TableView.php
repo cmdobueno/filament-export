@@ -138,11 +138,18 @@ class TableView extends Component
 
     public function getExportAction(): StaticAction
     {
-        dd($this);
+        $livewireCallActionName = null;
+        
+        if (method_exists($this, 'getLivewireSubmitActionName')) {
+            $livewireCallActionName = $this->getLivewireSubmitActionName();
+        } elseif (method_exists($this, 'getLivewireCallActionName')) {
+            $livewireCallActionName = $this->getLivewireCallActionName();
+        }
+        
         return StaticAction::make('export')
             ->button()
             ->label(__('filament-export::table_view.export_action_label'))
-            ->submit('form')
+            ->submit($livewireCallActionName)
             ->icon(config('filament-export.export_icon'));
     }
     
