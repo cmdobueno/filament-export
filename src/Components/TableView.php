@@ -138,10 +138,9 @@ class TableView extends Component
 
     public function getExportAction(): Action
     {
-        return Action::make('export')
+        return StaticAction::make('export')
             ->button()
             ->label(__('filament-export::table_view.export_action_label'))
-            ->submit()
             ->icon(config('filament-export.export_icon'));
     }
 
@@ -149,7 +148,7 @@ class TableView extends Component
     {
         $uniqueActionId = $this->getUniqueActionId();
 
-        return Action::make('print')
+        return StaticAction::make('print')
             ->button()
             ->label(__('filament-export::table_view.print_action_label'))
             ->action("\$emit('print-table-$uniqueActionId')")
