@@ -154,7 +154,8 @@ class TableView extends Component
             ->label(__('filament-export::table_view.print_action_label'))
             ->action("\$emit('print-table-$uniqueActionId')")
             ->color('gray')
-            ->icon(config('filament-export.print_icon'));
+            ->icon(config('filament-export.print_icon'))
+            ->hidden(true);
     }
 
     public function getCancelAction(): StaticAction
