@@ -145,26 +145,6 @@ class TableView extends Component
             ->icon(config('filament-export.export_icon'));
     }
 
-    public function getPrintAction(): StaticAction
-    {
-        $uniqueActionId = $this->getUniqueActionId();
-
-        return StaticAction::make('print')
-            ->button()
-            ->label(__('filament-export::table_view.print_action_label'))
-            ->action("\$dispatch('print-table-$uniqueActionId')")
-            ->color('gray')
-            ->icon(config('filament-export.print_icon'));
-    }
-
-    public function getCancelAction(): StaticAction
-    {
-        return StaticAction::make('cancel')
-            ->button()
-            ->label(__('filament-export::export_action.cancel_action_label'))
-            ->color('secondary')
-            ->icon(config('filament-export.cancel_icon'));
-    }
 
     public function getFooterActions(): array
     {
