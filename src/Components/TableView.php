@@ -140,6 +140,7 @@ class TableView extends Component
     {
         return StaticAction::make('export')
             ->button()
+            ->submit()
             ->label(__('filament-export::table_view.export_action_label'))
             ->icon(config('filament-export.export_icon'));
     }
@@ -169,8 +170,6 @@ class TableView extends Component
     {
         return [
             $this->getExportAction(),
-            $this->getPrintAction(),
-            $this->getCancelAction(),
         ];
     }
 
