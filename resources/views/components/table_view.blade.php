@@ -46,8 +46,9 @@
         <x-filament::button
             type="submit"
             icon="{{config('filament-export.export_icon')}}"
+            color="primary"
         >
-            {{ __('filament-export::table_view.export_action_label')  }}
+            Another Button?
         </x-filament::button>
     </x-slot>
 </x-filament::modal>
