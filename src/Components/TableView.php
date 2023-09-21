@@ -141,7 +141,7 @@ class TableView extends Component
         return Action::make('export')
             ->button()
             ->label(__('filament-export::table_view.export_action_label'))
-            ->submit()
+            ->submit('form')
             ->icon(config('filament-export.export_icon'));
     }
 
