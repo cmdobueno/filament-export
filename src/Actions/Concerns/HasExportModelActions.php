@@ -39,7 +39,7 @@ trait HasExportModelActions
                 StaticAction::make('submit')
                     ->button()
                     ->label('Submit Button')
-                    ->submit($livewireCallActionName)
+                    ->action("\$dispatch('submit-export-modal-{$uniqueActionId}')")
                     ->color($this->getColor() !== 'secondary' ? $this->getColor() : null)
                     ->icon(config('filament-export.export_icon')),
             ]
