@@ -33,13 +33,16 @@ trait HasExportModelActions
         } elseif (method_exists($this, 'getLivewireCallActionName')) {
             $livewireCallActionName = $this->getLivewireCallActionName();
         }
+        
+        dd($this);
+        
         return array_merge(
             $this->getPreviewAction(),
             [
                 StaticAction::make('submit')
                     ->button()
                     ->label('Submit Button')
-                    ->action("\$dispatch('submit-export-modal-{$uniqueActionId}')")
+                    ->submit($livewireCallActionName)
                     ->color($this->getColor() !== 'secondary' ? $this->getColor() : null)
                     ->icon(config('filament-export.export_icon')),
             ]
