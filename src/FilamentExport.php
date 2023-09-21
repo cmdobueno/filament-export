@@ -2,6 +2,9 @@
 
 namespace Cmdobueno\FilamentExport;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\Snappy\Facades\SnappyPdf;
+use Barryvdh\Snappy\PdfWrapper;
 use Cmdobueno\FilamentExport\Actions\FilamentExportBulkAction;
 use Cmdobueno\FilamentExport\Actions\FilamentExportHeaderAction;
 use Cmdobueno\FilamentExport\Components\TableView;
@@ -21,6 +24,10 @@ use Cmdobueno\FilamentExport\Concerns\HasPageOrientation;
 use Cmdobueno\FilamentExport\Concerns\HasPaginator;
 use Cmdobueno\FilamentExport\Concerns\HasTable;
 use Carbon\Carbon;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\ViewColumn;
@@ -140,14 +147,14 @@ class FilamentExport
         }, "{$this->getFileName()}.{$this->getFormat()}");
     }
 
-    public function getPdf(): \Barryvdh\DomPDF\PDF | \Barryvdh\Snappy\PdfWrapper
+    public function getPdf(): \Barryvdh\DomPDF\PDF | PdfWrapper
     {
         if ($this->shouldUseSnappy()) {
-            return \Barryvdh\Snappy\Facades\SnappyPdf::loadView($this->getPdfView(), $this->getViewData())
+            return SnappyPdf::loadView($this->getPdfView(), $this->getViewData())
                 ->setPaper('A4', $this->getPageOrientation());
         }
 
-        return \Barryvdh\DomPDF\Facade\Pdf::loadView($this->getPdfView(), $this->getViewData())
+        return Pdf::loadView($this->getPdfView(), $this->getViewData())
             ->setPaper('A4', $this->getPageOrientation());
     }
 
@@ -191,11 +198,11 @@ class FilamentExport
 
         $action->additionalColumnsAddButtonLabel(__('filament-export::export_action.additional_columns_field.add_button_label'));
 
-        $action->modalButton(__('filament-export::export_action.export_action_label'));
+        $action->modalSubmitActionLabel(__('filament-export::export_action.export_action_label'));
 
         $action->modalHeading(__('filament-export::export_action.modal_heading'));
 
-        $action->modalActions($action->getExportModalActions());
+        $action->modalFooterActions($action->getExportModalActions());
     }
 
     public static function getFormComponents(FilamentExportHeaderAction | FilamentExportBulkAction $action): array
@@ -255,33 +262,33 @@ class FilamentExport
             ->csvDelimiter($action->getCsvDelimiter());
 
         return [
-            \Filament\Forms\Components\TextInput::make('file_name')
+            TextInput::make('file_name')
                 ->label($action->getFileNameFieldLabel())
                 ->default($action->getFileName())
                 ->hidden($action->isFileNameDisabled())
                 ->rule('regex:/[a-zA-Z0-9\s_\\.\-\(\):]/')
                 ->required(),
-            \Filament\Forms\Components\Select::make('format')
+            Select::make('format')
                 ->label($action->getFormatFieldLabel())
                 ->options($action->getFormats())
                 ->default($action->getDefaultFormat())
                 ->reactive(),
-            \Filament\Forms\Components\Select::make('page_orientation')
+            Select::make('page_orientation')
                 ->label($action->getPageOrientationFieldLabel())
-                ->options(FilamentExport::getPageOrientations())
+                ->options(self::getPageOrientations())
                 ->default($action->getDefaultPageOrientation())
                 ->visible(fn ($get) => $get('format') === 'pdf'),
-            \Filament\Forms\Components\CheckboxList::make('filter_columns')
+            CheckboxList::make('filter_columns')
                 ->label($action->getFilterColumnsFieldLabel())
                 ->options($columns)
                 ->columns(4)
                 ->default(array_keys($columns))
                 ->hidden($action->isFilterColumnsDisabled()),
-            \Filament\Forms\Components\KeyValue::make('additional_columns')
+            KeyValue::make('additional_columns')
                 ->label($action->getAdditionalColumnsFieldLabel())
                 ->keyLabel($action->getAdditionalColumnsTitleFieldLabel())
                 ->valueLabel($action->getAdditionalColumnsDefaultValueFieldLabel())
-                ->addButtonLabel($action->getAdditionalColumnsAddButtonLabel())
+                ->addActionLabel($action->getAdditionalColumnsAddButtonLabel())
                 ->hidden($action->isAdditionalColumnsDisabled()),
             TableView::make('table_view')
                 ->export($initialExport)
@@ -294,7 +301,7 @@ class FilamentExport
 
     public static function callDownload(FilamentExportHeaderAction | FilamentExportBulkAction $action, Collection $records, array $data)
     {
-        return FilamentExport::make()
+        return self::make()
             ->fileName($data['file_name'] ?? $action->getFileName())
             ->data($records)
             ->table($action->getTable())
@@ -335,7 +342,7 @@ class FilamentExport
 
                 $item[$column->getName()] = (string) $state;
             }
-            array_push($items, $item);
+            $items[] = $item;
         }
 
         return $items;
