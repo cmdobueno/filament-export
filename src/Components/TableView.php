@@ -149,7 +149,7 @@ class TableView extends Component
         return StaticAction::make('export')
             ->button()
             ->label(__('filament-export::table_view.export_action_label'))
-            ->submit($livewireCallActionName)
+            ->submit('export-form')
             ->icon(config('filament-export.export_icon'));
     }
     
