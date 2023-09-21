@@ -14,7 +14,6 @@
         $wire.on('close-preview-modal-{{ $getUniqueActionId() }}', () => { isOpen = false; });"
     :heading="$getPreviewModalHeading()"
 >
-    <form name="export-form">
     <div class="preview-table-wrapper space-y-4">
         <table
             class="preview-table dark:bg-gray-800 dark:text-white dark:border-gray-700"
@@ -40,13 +39,15 @@
             @endforeach
         </table>
         <div>
-            <x-filament::pagination :paginator="$getRows()" :records-per-page-select-options="10" />
+            <x-filament::pagination :paginator="$getRows()" :records-per-page-select-options="10"/>
         </div>
     </div>
     <x-slot name="footer">
-        @foreach ($getFooterActions() as $action)
-            {{ $action }}
-        @endforeach
+        <x-filament::button
+            type="submit"
+            icon="{{config('filament-export.export_icon')}}"
+        >
+            {{ __('filament-export::table_view.export_action_label')  }}
+        </x-filament::button>
     </x-slot>
-    </form>
 </x-filament::modal>
